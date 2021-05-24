@@ -1,10 +1,27 @@
 package fr.dmu.formation.microcommerce.model;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
+
+
+import com.fasterxml.jackson.annotation.JsonFilter;
+
+@Entity
+//@JsonFilter("monFiltreDynamique")
 public class Product
 {
+	@Id
+	@GeneratedValue
     private int id;
-    private String nom;
-    private int prix;
+
+	private String nom;
+
+	@NotNull
+	private int prix;
+
+	private int prixAchat;
 
     
     
@@ -15,11 +32,13 @@ public class Product
 
 
 
-	public Product(int id, String nom, int prix) {
+	public Product(int id, String nom, int prix, int prixAchat)
+	{
 		super();
 		this.id = id;
 		this.nom = nom;
 		this.prix = prix;
+		this.prixAchat = prixAchat;
 	}
 
 
@@ -58,11 +77,22 @@ public class Product
 		this.prix = prix;
 	}
 
+	
+	public int getPrixAchat() {
+		return prixAchat;
+	}
+
+
+
+	public void setPrixAchat(int prixAchat) {
+		this.prixAchat = prixAchat;
+	}
+
 
 
 	@Override
 	public String toString() {
-		return "Product [id=" + id + ", nom=" + nom + ", prix=" + prix + "]";
+		return "Product [id=" + id + ", nom=" + nom + ", prix=" + prix + ", prixAchat=" + prixAchat + "]";
 	}
 
 	
